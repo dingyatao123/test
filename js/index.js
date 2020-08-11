@@ -57,6 +57,38 @@ function isPhoneNo(phone) {
     return pattern.test(phone);
 }
 
+var deg = {percent: 100, left: 225, leftBC: "#fff", right: 225, rightBC: "#fff"};
+var percent = 0;
+function loadPercent(percent, id,color) {
+    var allDeg = countDegByPercent(percent);
+    if (allDeg >= 180) {
+        var tmpDeg = allDeg - 180;
+        deg.left = 45 + tmpDeg;
+        deg.right = 225
+        deg.leftBC = color;
+        deg.rightBC = color;
+    } else {
+        deg.right = 45 + allDeg;
+        deg.rightBC = color;
+        deg.leftBC = "#fff";
+    }
+    //console.log(deg);
+    $("#" + id + " .rightcircle").css({
+        "-webkit-transform": "rotate(" + deg.right + "deg)",
+        "border-left": "6px solid " + deg.rightBC,
+        "border-bottom": "6px solid " + deg.rightBC
+    });
+    $("#" + id + " .leftcircle").css({
+        "-webkit-transform": "rotate(" + deg.left + "deg)",
+        "border-top": "6px solid " + deg.leftBC,
+        "border-right": "6px solid " + deg.leftBC
+    });
+}
+
+function countDegByPercent(percent) {
+    return percent * 3.6;
+}
+
 $(document).ready(function(){
     var media = $("#media")[0];
     media.pause();
@@ -123,6 +155,7 @@ $(document).ready(function(){
         }
         //$('.page4 .res p:nth-child(2)').html(ms);
         $('.page3').removeClass('active');$('.page4').addClass('active');
+        $('.page4 .scroll ul').html('');
         $.ajax({
             url: '/xtyy/index.php?act=add',
             type: 'post',
@@ -134,10 +167,31 @@ $(document).ready(function(){
             },
             success: function(resp) {
                 console.log(resp);
-                if(resp.total==1){
-                    //alert('成功！');
-                }else{
-                    //alert('失败！');
+                $('.page4 .scroll .percent').text(resp.ph);
+                $('.page4 .scroll .cy span').text(resp.cy);
+                for(var i=0,j=resp.data.length;i<j;i++){
+                    if(resp.ph==i+1){
+                        $('.page4 .scroll ul').append('<li class="active"><span>NO.'+(i+1)+'</span><span>'+resp.data[i].username+'</span><span>'+resp.data[i].scores+'分</span></li>');
+                    }else{
+                        $('.page4 .scroll ul').append('<li><span>NO.'+(i+1)+'</span><span>'+resp.data[i].username+'</span><span>'+resp.data[i].scores+'分</span></li>');
+                    }
+                }
+
+                var arr = $('.page4 .scroll .cy span');
+                var circle = $('.circleProgress_wrapper');
+                colors = [
+                    "#e50e49",
+                    "#ED93B5",
+                    "#32A6A3"
+                ];
+                if (arr.length != circle.length) {
+                    alert("出错了！")
+                } else {
+                    for (var i = 0; i < arr.length; i++) {
+                        var itemDeg = arr[i].innerHTML;
+                        var circleId = circle[i].id;
+                        loadPercent(itemDeg, circleId,colors[i]);
+                    }
                 }
             }
         });
@@ -145,31 +199,53 @@ $(document).ready(function(){
     $('body').on('click','.page4 .return',function(){
         location.reload();
     });
-    $('body').on('click','.page4 .pic4_2',function(){
-        var username=$("#username").val();
-        var tel=$("#tel").val();
-        $('.page4').removeClass('active');$('.page5').addClass('active');
-        $('.page5 .box ul').html('');
-        $.ajax({
-            url: '/xtyy/index.php?act=phb',
-            type: 'post',
-            data: {username:username,tel: tel ,score: score},
-            dataType: 'json',
-            error: function () {
-                console.log(-1);
-                return false;
-            },
-            success: function(resp) {
-                //console.log(resp);
-                $('.page5 .box ul').append('<li>排行第'+resp.ph+'名</li>');
-                for(var i=0,j=resp.data.length;i<j;i++){
-                    $('.page5 .box ul').append('<li><span>第'+(i+1)+'名</span><span>'+resp.data[i].username+'</span><span>'+resp.data[i].scores+'</span></li>');
-                }
-                //resp.ph
-            }
-        });
-    });
-    $('body').on('click','.page5 .pic5_2',function(){
-        $('.page5').removeClass('active');$('.page4').addClass('active');
-    });
 });
+
+//滑动处理 
+var startX, startY; 
+document.addEventListener('touchstart',function (ev) { 
+  startX = ev.touches[0].pageX; 
+  startY = ev.touches[0].pageY; 
+}, false); 
+document.addEventListener('touchend',function (ev) { 
+if($('.page4').hasClass('active')){
+  var endX, endY; 
+  endX = ev.changedTouches[0].pageX; 
+  endY = ev.changedTouches[0].pageY; 
+  var direction = GetSlideDirection(startX, startY, endX, endY); 
+  switch(direction) { 
+    case 0: 
+        //alert("无操作"); 
+      break; 
+    case 1: 
+      // 向上 
+      $('.page4 .scroll').addClass('top');
+      break; 
+    case 2: 
+      // 向下 
+      console.log($('.page4 .scroll').scrollTop());
+      if(parseInt($('.page4 .scroll').scrollTop())==0){
+        $('.page4 .scroll').removeClass('top');
+　　　}
+      break; 
+
+    default: 
+  } 
+}
+}, false); 
+
+function GetSlideDirection(startX, startY, endX, endY) { 
+    var dy = startY - endY; 
+    //var dx = endX - startX; 
+    var result = 0; 
+    if(dy>0) {//向上滑动 
+      result=1; 
+    }else if(dy<0){//向下滑动 
+      result=2; 
+    } 
+    else
+    { 
+      result=0; 
+    } 
+    return result; 
+  }

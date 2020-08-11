@@ -16,7 +16,7 @@ if($act=='add'){
     $sql = "SELECT count(*) as num,scores FROM `records` WHERE username='$username' AND telnumber='$tel'";
     $row = $db->getRow($sql);
     if($row['num']>0){
-        if($score>$row['scores']){
+        if($score!=$row['scores']){
             $sql = "UPDATE `records` SET scores=$score WHERE username='$username' AND telnumber='$tel'";
             $db->query($sql);
         }
@@ -25,24 +25,12 @@ if($act=='add'){
         $db->query($sql);
     }
 
-    $res['total'] = 1;
-    //$res['id'] = $db->insert_id();
-    if($res === false){
-        return false;
-    }else{
-        die(json_encode($res));
-    }
-}elseif($act=='phb'){
-    $username = empty($_REQUEST['username']) ? '' : $_REQUEST['username'];
-    $tel = empty($_REQUEST['tel']) ? '' : $_REQUEST['tel'];
-    $score = empty($_REQUEST['score']) ? 0 : $_REQUEST['score'];
-
     //SELECT *,Rank() OVER ( ORDER BY scores desc ) number FROM `records`
     //SELECT *,ROW_NUMBER() OVER ( ORDER BY scores desc ) number FROM `records`
 
     $sql = "SELECT * FROM `records` ORDER BY scores desc";
     $arr = $db->getAll($sql);
-    // $sql = "SELECT number FROM (SELECT *,ROW_NUMBER() OVER ( ORDER BY scores desc ) number FROM `records`) as q WHERE username='$username' AND telnumber='$tel'";
+    // $sql = "SELECT count(*) FROM `records` WHERE scores<=$score";
     // $num = $db->getOne($sql);
 
     foreach ($arr as $k => $v) {
@@ -52,14 +40,10 @@ if($act=='add'){
         }
     }
 
-    //$res['ph'] = $num;
+    $res['cy'] = ceil((count($arr)-$res['ph'])*100/count($arr));
     $res['data'] = $arr;
-
-    if($res === false){
-        return false;
-    }else{
-        die(json_encode($res));
-    }
+    
+    die(json_encode($res));
 }
 ?>
 <!DOCTYPE HTML>
@@ -127,7 +111,25 @@ if($act=='add'){
             <a class="return" href="javascript: void(0);"></a>
             <a class="jj" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTk3MDk3Ng==&scene=110#wechat_redirect"></a>
         </div>
-        <img class="pic4_2" src="images/21.png">
+        <div class="scroll">
+            <div class="circle">
+                <div class="circleProgress_wrapper" id="circle1">
+                    <div class="wrapper right">
+                        <div class="circleProgress rightcircle"></div>
+                    </div>
+                    <div class="wrapper left">
+                        <div class="circleProgress leftcircle" style="transform: rotate(45deg);border-top: 5px solid #fff;border-right: 5px solid #fff;"></div>
+                    </div>
+                    <span class="percent" >0</span>
+                    <span class="express-text">全国排名</span>
+                </div>
+                <p class="cy">超过了全国<span>0</span>%的用户</p>
+            </div>
+            <ul>
+
+            </ul>
+        </div>
+        <!-- <img class="pic4_2" src="images/21.png"> -->
     </div>
     <div class="page page5">
         <img class="pic5" src="images/20.jpg">
