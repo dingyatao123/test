@@ -55,9 +55,9 @@ if($act=='add'){
     <title>新天药业</title>
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?t=1.0">
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js?t=1.0"></script>
 </head>
 <body>
 <div class="index">
@@ -89,7 +89,7 @@ if($act=='add'){
     </div>
     <div class="page page3">
         <div class="score">0</div>
-        <img class="pic3" src="images/4.png">
+        <img class="pic3" src="images/4.png?t=1">
         <div class="wd block">
             <img class="pic3_2" src="images/8.png">
             <p class="qes"><span></span><br><span></span></p>
@@ -125,16 +125,6 @@ if($act=='add'){
                 </div>
                 <p class="cy">超过了全国<span>0</span>%的用户</p>
             </div>
-            <ul>
-
-            </ul>
-        </div>
-        <!-- <img class="pic4_2" src="images/21.png"> -->
-    </div>
-    <div class="page page5">
-        <img class="pic5" src="images/20.jpg">
-        <img class="pic5_2" src="images/22.png">
-        <div class="box">
             <ul>
 
             </ul>

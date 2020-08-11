@@ -199,40 +199,47 @@ $(document).ready(function(){
     $('body').on('click','.page4 .return',function(){
         location.reload();
     });
+    
+    document.querySelector('body').addEventListener('touchmove', function(e) {
+        if (!document.querySelector('.scroll').contains(e.target)) {
+            e.preventDefault();
+        }
+    })
+    //滑动处理 
+    var startX, startY; 
+    document.querySelector('.scroll').addEventListener('touchstart',function (ev) { 
+      startX = ev.touches[0].pageX; 
+      startY = ev.touches[0].pageY; 
+    }, false); 
+    document.querySelector('.scroll').addEventListener('touchend',function (ev) { 
+    if($('.page4').hasClass('active')){
+      var endX, endY; 
+      endX = ev.changedTouches[0].pageX; 
+      endY = ev.changedTouches[0].pageY; 
+      var direction = GetSlideDirection(startX, startY, endX, endY); 
+      switch(direction) { 
+        case 0: 
+            //alert("无操作"); 
+          break; 
+        case 1: 
+          // 向上 
+          $('.page4 .scroll').addClass('top');
+          break; 
+        case 2: 
+          // 向下 
+          console.log($('.page4 .scroll').scrollTop());
+          //$('.page4 .scroll').prepend('向下'+$('.page4 .scroll').scrollTop()+' ');
+          if(parseInt($('.page4 .scroll').scrollTop())==0){
+            $('.page4 .scroll').removeClass('top');
+    　　　}
+          break; 
+    
+        default: 
+      } 
+    }
+    }, false);     
 });
 
-//滑动处理 
-var startX, startY; 
-document.addEventListener('touchstart',function (ev) { 
-  startX = ev.touches[0].pageX; 
-  startY = ev.touches[0].pageY; 
-}, false); 
-document.addEventListener('touchend',function (ev) { 
-if($('.page4').hasClass('active')){
-  var endX, endY; 
-  endX = ev.changedTouches[0].pageX; 
-  endY = ev.changedTouches[0].pageY; 
-  var direction = GetSlideDirection(startX, startY, endX, endY); 
-  switch(direction) { 
-    case 0: 
-        //alert("无操作"); 
-      break; 
-    case 1: 
-      // 向上 
-      $('.page4 .scroll').addClass('top');
-      break; 
-    case 2: 
-      // 向下 
-      console.log($('.page4 .scroll').scrollTop());
-      if(parseInt($('.page4 .scroll').scrollTop())==0){
-        $('.page4 .scroll').removeClass('top');
-　　　}
-      break; 
-
-    default: 
-  } 
-}
-}, false); 
 
 function GetSlideDirection(startX, startY, endX, endY) { 
     var dy = startY - endY; 
