@@ -117,15 +117,15 @@ if($act=='add'){
             <p class="username">姓　名 <input id="username" type="text" name="username"></p>
             <p class="tel">手机号 <input id="tel" type="tel" name="tel" min="11"></p>
             <p id="err"></p>
-            <a class="btn">提交</a>
+            <a class="btn" href="javascript: void(0);">提交</a>
         </div>
     </div>
     <div class="page page4">
         <img class="pic4" src="images/23.png">
         <div class="res">
             <p></p>
-            <p></p>
-            <a class="return"></a>
+            <a class="return" href="javascript: void(0);"></a>
+            <a class="jj" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0OTk3MDk3Ng==&scene=110#wechat_redirect"></a>
         </div>
         <img class="pic4_2" src="images/21.png">
     </div>

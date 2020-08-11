@@ -37,10 +37,10 @@ input{-webkit-appearance: none;outline:none;}
 .page3 .wd:nth-child(4) .btn{background: #409eff;padding: 10px 40px;font-size: 16px;border-radius: 5px;color: #fff;display: inline-block;}
 
 .page4 .pic4{width: 100%;}
-.page4 .res{position: absolute;left: 10vw;top: 8vw;width: 80vw;color: #ff0066;}
+.page4 .res{position: absolute;left: 5vw;top: 64vw;width: 90vw;color: #ff0066;}
 .page4 .res p:first-child{text-align: center;margin-bottom: 36vw;font-size: 21vw;color: #fff;font-weight: bold;width: 85%;}
-.page4 .res p:nth-child(2){margin-bottom: 4vw;font-size: 5vw;}
-.page4 .return{position: absolute;display: inline-block;left: 26%;top: 132vw;width: 37vw;height: 12vw;}
+.page4 .return{position: absolute;display: inline-block;left: 60%;top: 42vw;width: 40%;height: 12vw;}
+.page4 .jj{position: absolute;display: inline-block;left: 0;top: 42vw;width: 40%;height: 12vw;}
 .page4 .pic4_2{position: absolute;left: 10vw;top: 8vw;width: 9vw;}
 
 .page5 .pic5{width: 100%;height: 100%;}
@@ -69,7 +69,7 @@ input{-webkit-appearance: none;outline:none;}
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     position: fixed;
     right: 10px;
-    top: 9vw;
+    top: 4vw;
     z-index: 200;
     width: 30px;
     height: 30px;

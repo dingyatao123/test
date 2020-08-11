@@ -112,18 +112,16 @@ $(document).ready(function(){
         }
 
         $('.page4 .res p:first-child()').text(score);
-        var ms='';
         if(score>=80){
-            ms = "恭喜您！您的卵巢功能未出现衰退迹象，请继续保持！<br>关注女性专科健康，关注“小天科普”";
+            $('.page4 .pic4').attr('src','images/23.png');
         }
         else if(score>=60 && score<80){
-            //alert(score+"，你的得分是"+score+"，成绩良好！")
-            ms = "加油噢！您的卵巢功能有衰退倾向，请加以关注！<br>避免继续衰退发展为卵巢功能衰退综合征。<br>建议强化卵巢功能健康保养。";
+            $('.page4 .pic4').attr('src','images/24.png');
         }
         else if(score<60){
-            ms = "很遗憾！您的卵巢功能评分提示<br>您的卵巢功能已经衰退！建议就医进行更多卵巢功能检测，<br>或咨询专业连锁药店关于妇女卵巢功能衰退的相关用药！";
+            $('.page4 .pic4').attr('src','images/25.png');
         }
-        $('.page4 .res p:nth-child(2)').html(ms);
+        //$('.page4 .res p:nth-child(2)').html(ms);
         $('.page3').removeClass('active');$('.page4').addClass('active');
         $.ajax({
             url: '/xtyy/index.php?act=add',
