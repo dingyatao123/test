@@ -102,6 +102,9 @@ $(document).ready(function(){
         }
     });
     $(".page2 .pic2_3").click(function () {
+        $("#audio_btn").addClass("rotate");
+        media.play();
+
         $('.page2').removeClass('active');$('.page3').addClass('active');
        
         $(".page3 .qes span:first-child").html('1/10');
