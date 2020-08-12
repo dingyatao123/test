@@ -91,6 +91,8 @@ function countDegByPercent(percent) {
 
 $(document).ready(function(){
     var media = $("#media")[0];
+    var media1 = $("#media1")[0];
+    var media2 = $("#media2")[0];
     media.pause();
     $("#audio_btn").click(function(){
         if($(this).hasClass("rotate")){
@@ -124,8 +126,12 @@ $(document).ready(function(){
         a.push(ch);
         if(arr[id-1].answer[ch-1]==10){//答案改色
             $(this).addClass('r');
+            media1.currentTime = 0;
+            media1.play();
         }else{
             $(this).addClass('w');
+            media2.currentTime = 0;
+            media2.play();
         }
         setTimeout("$(this).removeClass('r w');",400);//答案还原
         cq(id);

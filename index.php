@@ -62,7 +62,10 @@ if($act=='add'){
 <body>
 <div class="index">
     <div id="audio_btn" class="off">
-        <audio loop="" src="images/music.mp3?t=1" id="media" autoplay="" preload=""></audio>
+        <audio loop="" src="images/music.mp3?t=1" id="media" preload=""></audio>
+        <audio src="images/1.mp3" id="media1" preload=""></audio>
+        <audio src="images/2.mp3" id="media2" preload=""></audio>
+        <!-- <audio src="images/3.mp3" id="media3" preload=""></audio> -->
     </div>
     <div class="page page1 active">
         <div id="app">
