@@ -55,7 +55,7 @@ if($act=='add'){
     <title>新天药业</title>
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/style.css?t=1.0">
+    <link rel="stylesheet" href="css/style.css?t=1.1">
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/index.js?t=1.0"></script>
 </head>
@@ -64,8 +64,8 @@ if($act=='add'){
     <div id="audio_btn" class="off">
         <audio loop="" src="images/music.mp3?t=1" id="media" preload=""></audio>
         <audio src="images/1.mp3" id="media1" preload=""></audio>
-        <audio src="images/2.mp3" id="media2" preload=""></audio>
-        <!-- <audio src="images/3.mp3" id="media3" preload=""></audio> -->
+        <!-- <audio src="images/2.mp3" id="media2" preload=""></audio>
+        <audio src="images/3.mp3" id="media3" preload=""></audio> -->
     </div>
     <div class="page page1 active">
         <div id="app">

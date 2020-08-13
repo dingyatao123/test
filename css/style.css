@@ -20,19 +20,21 @@ input{-webkit-appearance: none;outline:none;}
 .page2 .pic2_2.animate__animated{opacity: 1;}
 .page2 .pic2_3{position: absolute;right: 0;top: 91vw;width: 21%;}
 
+.page3{overflow: auto;}
 .page3 .pic3{width: 100%;}
 .page3 .score{position: absolute;left: 10vw;top: 4vw;font-size: 6vw;}
 .page3 .pic3_2{position: absolute;left: 12vw;top: 47.4vw;width: 75.5%;}
 .page3 .qes{position: absolute;left: 15vw;top: 27vw;width: 70%;font-size: 5vw;line-height: 6vw;color: #0e2d4c;}
 .page3 .qes span:first-child{font-size: 4vw;color: #ed3432;}
 .page3 .ans{position: absolute;left: 10vw;top: 98vw;width: 70%;font-size: 4vw;line-height: 6vw;color: #fff;}
+.page3.fang .ans{width: 65%;font-size: 3.5vw;}
 .page3 .ans a{display: block;color: #fff;cursor: pointer;background: url(../images/5.png) no-repeat;background-size: 100% 100%;line-height: 12vw;margin-bottom: 4vw;padding: 0 3vw;}
 .page3 .ans a.w{background: url(../images/6.png) no-repeat;background-size: 100% 100%;}
 .page3 .ans a.r{background: url(../images/7.png) no-repeat;background-size: 100% 100%;}
 .page3 #err{font-size: 4vw;margin: 2vw 0 3vw;}
 .page3 #err img{width: 5vw;display: inline-block;vertical-align: sub;}
 .page3 .wd:nth-child(4){position: absolute;left: 15vw;top: 38vw;width: 70%;font-size: 5vw;line-height: 6vw;color: #0e2d4c;text-align: center;}
-.page3 .wd:nth-child(4) input{width: 60%;height: 10vw;margin-bottom: 2vw;border: 1px solid #409eff;border-radius: 5px;text-align: center;padding: 0 10px;}
+.page3 .wd:nth-child(4) input{font-size: 5vw;width: 60%;height: 10vw;margin-bottom: 2vw;border: 1px solid #409eff;border-radius: 5px;text-align: center;padding: 0 10px;}
 .page3 .wd:nth-child(4) p{margin-bottom: 2vw;}
 .page3 .wd:nth-child(4) .btn{background: #409eff;padding: 10px 40px;font-size: 16px;border-radius: 5px;color: #fff;display: inline-block;}
 
@@ -72,11 +74,12 @@ input{-webkit-appearance: none;outline:none;}
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     position: fixed;
     right: 10px;
-    top: 4vw;
+    top: 10vw;
     z-index: 200;
     width: 30px;
     height: 30px;
 }
+#audio_btn.top{top: 4vw;}
 
 /* 圆环 */
 .circleProgress_wrapper {
