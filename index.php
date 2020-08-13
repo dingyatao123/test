@@ -52,7 +52,8 @@ if($act=='add'){
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>新天药业</title>
+    <title>新天药业满分卵巢大挑战</title>
+    <meta name="description" content="新天药业满分卵巢大挑战">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/style.css?t=1.1">
