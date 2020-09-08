@@ -1,8 +1,8 @@
 ﻿<?php
 define('IN_ECS',true);
 
-require_once '/data/config.php';
-require_once '/data/cls_mysql.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/xtyy/data/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/xtyy/data/cls_mysql.php';
 date_default_timezone_set("Asia/Shanghai");
 $db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);
 $db_host = $db_user = $db_pass = $db_name = NULL;
@@ -52,9 +52,10 @@ if($act=='add'){
             $res['ph'] = $k+1;
             //break;
         }
-        if(mb_strlen($v['username'],"utf-8")>2){
+        if(mb_strlen($v['username'],"utf-8")>1){
             $arr[$k]['username'] = substr_cut($v['username']);
         }
+        //echo $arr[$k]['username'].'<br>';
     }
 
     $res['cy'] = ceil((count($arr)-$res['ph'])*100/count($arr));
