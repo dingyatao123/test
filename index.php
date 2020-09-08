@@ -8,6 +8,20 @@ $db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);
 $db_host = $db_user = $db_pass = $db_name = NULL;
 
 $act = empty($_REQUEST['act']) ? '' : $_REQUEST['act'];
+
+/**
+ * 只保留字符串首尾字符，隐藏中间用*代替（两个字符时只显示第一个）
+ * @param string $user_name 姓名
+ * @return string 格式化后的姓名
+ */
+function substr_cut($user_name){
+    $strlen     = mb_strlen($user_name, 'utf-8');
+    $firstStr     = mb_substr($user_name, 0, 1, 'utf-8');
+    $lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
+    return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
+}
+
+
 if($act=='add'){
     $username = empty($_REQUEST['username']) ? '' : $_REQUEST['username'];
     $tel = empty($_REQUEST['tel']) ? '' : $_REQUEST['tel'];
@@ -36,7 +50,10 @@ if($act=='add'){
     foreach ($arr as $k => $v) {
         if($v['username']==$username && $v['telnumber']==$tel){
             $res['ph'] = $k+1;
-            break;
+            //break;
+        }
+        if(mb_strlen($v['username'],"utf-8")>2){
+            $arr[$k]['username'] = substr_cut($v['username']);
         }
     }
 
